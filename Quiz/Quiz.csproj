@@ -45,21 +45,20 @@
   <ItemGroup>
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Core\Dtos\PlayerAnswerDTO.cs" />
-    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Models\Answer.cs" />
     <Compile Include="Core\Models\Question.cs" />
     <Compile Include="Core\Models\QuestionAnswer.cs" />
     <Compile Include="Core\Repositories\IAnswerRepository.cs" />
     <Compile Include="Core\Repositories\IQuestionAnswerRepository.cs" />
     <Compile Include="Core\Repositories\IQuestionRepository.cs" />
-    <Compile Include="Core\Services\ICountPointBySumService.cs" />
-    <Compile Include="Core\Services\ICountPointByMultiply.cs" />
+    <Compile Include="Core\Services\ICountPlayerScoreByMultiply.cs" />
+    <Compile Include="Core\Services\ICountPlayerScoreBySum.cs" />
     <Compile Include="Persistence\Repositories\AnswerRepository.cs" />
     <Compile Include="Persistence\Repositories\QuestionAnswerRepository.cs" />
     <Compile Include="Persistence\Repositories\QuestionRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CountPointByMultiply.cs" />
+    <Compile Include="Services\CountPointBySumService.cs" />
     <Compile Include="Services\Factory.cs" />
     <Compile Include="ViewModels\PlayerAnswerViewModel.cs" />
   </ItemGroup>
