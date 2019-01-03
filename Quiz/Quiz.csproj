@@ -58,7 +58,7 @@
     <Compile Include="Persistence\Repositories\QuestionRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CountPointBySumService.cs" />
+    <Compile Include="Services\CountPlayerScoreBySumService.cs" />
     <Compile Include="Services\Factory.cs" />
     <Compile Include="ViewModels\PlayerAnswerViewModel.cs" />
   </ItemGroup>

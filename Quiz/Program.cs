@@ -27,7 +27,7 @@ namespace Quiz
             IQuestionAnswerRepository questionAnswerRepository = Factory.CreateInstance<QuestionAnswerRepository>();
             var correctAnswers = questionAnswerRepository.GetCorrectAnswers(questions);
 
-            ICountPlayerScoreBySum playerScores = Factory.CreateInstance<CountPointBySumService>();
+            ICountPlayerScoreBySum playerScores = Factory.CreateInstance<CountPlayerScoreBySumService>();
             var playerScore = playerScores.CountPlayerScoreBySum(playerAnswers, correctAnswers);
 
             var winScoreString = ConfigurationManager.AppSettings.Get("WinScore");
