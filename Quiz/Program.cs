@@ -58,14 +58,14 @@ namespace Quiz
                     .OrderBy(a=>a.IdAnswer)
                     .Select((a, i) => new PlayerAnswerViewModel { Content = $"{ IntToLetters(i)}. {a.Content}", IdAnswer = a.IdAnswer, IdQuestion = a.IdQuestion, PlayerKey = IntToLetters(i) });                
 
-                AskQuestion(question, possibleAnswersViewModel);                
+                AskQuestion(question, possibleAnswersViewModel);
 
                 while (true)
                 {
                     var playerKey = Console.ReadKey().KeyChar.ToString().ToUpper();
                     Console.WriteLine();
                     if (!allowedAnswers.Contains(playerKey))
-                    {                        
+                    {
                         AskQuestion(question, possibleAnswersViewModel, true);
                     }
                     else
@@ -90,16 +90,15 @@ namespace Quiz
             }
 
             Console.WriteLine(question.Content);
-            possibleAnswers                
+            possibleAnswers
                 .ToList()
-                .ForEach(a => Console.WriteLine(a.Content));            
+                .ForEach(a => Console.WriteLine(a.Content));
         }
 
         public static string IntToLetters(int value)
         {
-            string result = string.Empty;            
+            string result = string.Empty;
             result = (char)('A' + value % 26) + result;
-            value /= 26;
             return result;
         }
     }
