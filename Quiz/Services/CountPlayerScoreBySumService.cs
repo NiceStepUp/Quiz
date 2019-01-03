@@ -8,7 +8,7 @@ using Quiz.Core.Models;
 
 namespace Quiz.Services
 {
-    public class CountPlayerScoreByMultiply : ICountPlayerScoreByMultiply
+    public class CountPlayerScoreBySumService : ICountPlayerScoreBySum
     {
         public int CountPlayerScoreBySum(IEnumerable<Answer> userAnswers, IEnumerable<QuestionAnswer> correctAnswers)
         {

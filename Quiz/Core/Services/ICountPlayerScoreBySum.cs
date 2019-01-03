@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quiz.Core.Services
 {
-    interface ICountPlayerScoreByMultiply
+    interface ICountPlayerScoreBySum
     {
         int CountPlayerScoreBySum(IEnumerable<Answer> userAnswers, IEnumerable<QuestionAnswer> correctAnswers);
     }
