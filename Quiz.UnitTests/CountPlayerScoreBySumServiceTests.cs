@@ -36,6 +36,7 @@ namespace Quiz.UnitTests
 
         }
 
+
         [Test]
         public void CountPlayerScoreBySum_AllAnswersAreCorrect_ReturnsFour()
         {
