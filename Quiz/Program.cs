@@ -21,9 +21,11 @@ namespace Quiz
         {
             IQuestionRepository questionService = Factory.CreateInstance<QuestionRepository>();
             var questions = questionService.GetQuestions();
+
             IAnswerRepository answerService = Factory.CreateInstance<AnswerRepository>();
             var possibleAnswers = answerService.GetPossibleAnswers(questions);
-            var playerAnswers = GetPlayerAsnwers(questions, possibleAnswers);
+
+            var playerAnswers = GetPlayerAnswers(questions, possibleAnswers);
             IQuestionAnswerRepository questionAnswerRepository = Factory.CreateInstance<QuestionAnswerRepository>();
             var correctAnswers = questionAnswerRepository.GetCorrectAnswers(questions);
 
@@ -40,7 +42,7 @@ namespace Quiz
         }
 
 
-        private static IEnumerable<Answer> GetPlayerAsnwers(IEnumerable<Question> questions, IEnumerable<Answer> possibleAnswers)
+        private static IEnumerable<Answer> GetPlayerAnswers(IEnumerable<Question> questions, IEnumerable<Answer> possibleAnswers)
         {
             List<string> allowedAnswers = new List<string>()
                 {
