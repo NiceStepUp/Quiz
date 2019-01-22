@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Core\Dtos\PlayerAnswerDTO.cs" />
     <Compile Include="Core\Models\Answer.cs" />
     <Compile Include="Core\Models\Question.cs" />
     <Compile Include="Core\Models\QuestionAnswer.cs" />

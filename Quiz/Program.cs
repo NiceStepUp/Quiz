@@ -1,5 +1,4 @@
-﻿using Quiz.Core.Dtos;
-using Quiz.Core.Models;
+﻿using Quiz.Core.Models;
 using Quiz.Core.Repositories;
 using Quiz.Core.Services;
 using Quiz.Persistence.Repositories;
