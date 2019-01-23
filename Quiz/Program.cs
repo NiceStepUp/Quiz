@@ -18,18 +18,13 @@ namespace Quiz
     {
         static void Main(string[] args)
         {
-            IQuestionRepository questionService = Factory.CreateInstance<QuestionRepository>();
-            var questions = questionService.GetQuestions();
+            IQuestionRepository questionRepository = Factory.CreateInstance<QuestionRepository>();
+            var questions = questionRepository.GetQuestions();
 
-            IAnswerRepository answerService = Factory.CreateInstance<AnswerRepository>();
-            var possibleAnswers = answerService.GetPossibleAnswers(questions);
-
-            var playerAnswers = GetPlayerAnswers(questions, possibleAnswers);
-            IQuestionAnswerRepository questionAnswerRepository = Factory.CreateInstance<QuestionAnswerRepository>();
-            var correctAnswers = questionAnswerRepository.GetCorrectAnswers(questions);
+            var playerAnswers = GetPlayerAnswers(questions);
 
             ICountPlayerScoreBySum playerScores = Factory.CreateInstance<CountPlayerScoreBySumService>();
-            var playerScore = playerScores.CountPlayerScoreBySum(playerAnswers, correctAnswers);
+            var playerScore = playerScores.CountPlayerScoreBySum(playerAnswers);
 
             var winScoreString = ConfigurationManager.AppSettings.Get("WinScore");
             int winScore = 0;
@@ -41,7 +36,7 @@ namespace Quiz
         }
 
 
-        private static IEnumerable<Answer> GetPlayerAnswers(IEnumerable<Question> questions, IEnumerable<Answer> possibleAnswers)
+        private static IEnumerable<Answer> GetPlayerAnswers(IEnumerable<Question> questions)
         {
             List<string> allowedAnswers = new List<string>()
                 {
@@ -50,14 +45,18 @@ namespace Quiz
                     Constants.Constants.Answers.C,
                     Constants.Constants.Answers.D,
                 };
-            
+
             var playerAnswers = new List<Answer>();
 
             foreach (var question in questions)
             {
-                var possibleAnswersViewModel = possibleAnswers.Where(a => a.IdQuestion == question.IdQuestion)
+                var possibleAnswersViewModel = question.AvailableAnswers
+                    .Where(a => a.IdQuestion == question.IdQuestion)
                     .OrderBy(a=>a.IdAnswer)
-                    .Select((a, i) => new PlayerAnswerViewModel { Content = $"{ IntToLetters(i)}. {a.Content}", IdAnswer = a.IdAnswer, IdQuestion = a.IdQuestion, PlayerKey = IntToLetters(i) });                
+                    .Select((a, i) => new PlayerAnswerViewModel
+                    {
+                        Content = $"{ IntToLetters(i)}. {a.Content}", IdAnswer = a.IdAnswer, IdQuestion = a.IdQuestion, PlayerKey = IntToLetters(i), IsCorrect = a.IsCorrect
+                    });
 
                 AskQuestion(question, possibleAnswersViewModel);
 
@@ -73,7 +72,7 @@ namespace Quiz
                     {
                         var answer = possibleAnswersViewModel.Where(a => a.PlayerKey == playerKey).FirstOrDefault();
                         if(answer != null)
-                            playerAnswers.Add(new Answer(answer.IdAnswer, question.IdQuestion, playerKey));
+                            playerAnswers.Add(new Answer(answer.IdAnswer, answer.IdQuestion, answer.Content, answer.IsCorrect));
                         break;
                     }
                 }
@@ -82,7 +81,7 @@ namespace Quiz
             return playerAnswers;
         }
 
-        private static void AskQuestion(Question question, IEnumerable<PlayerAnswerViewModel> possibleAnswers, bool showPossibleKeys = false)
+        private static void AskQuestion(Question question, IEnumerable<PlayerAnswerViewModel> availableAnswers,  bool showPossibleKeys = false)
         {
             if (showPossibleKeys)
             {
@@ -91,7 +90,7 @@ namespace Quiz
             }
 
             Console.WriteLine(question.Content);
-            possibleAnswers
+            availableAnswers
                 .ToList()
                 .ForEach(a => Console.WriteLine(a.Content));
         }

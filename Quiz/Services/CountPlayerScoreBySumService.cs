@@ -10,17 +10,13 @@ namespace Quiz.Services
 {
     public class CountPlayerScoreBySumService : ICountPlayerScoreBySum
     {
-        public int CountPlayerScoreBySum(IEnumerable<Answer> playerAnswers, IEnumerable<QuestionAnswer> correctAnswers)
+        public int CountPlayerScoreBySum(IEnumerable<Answer> playerAnswers)
         {
             var sum = 0;
             foreach (var userAnswer in playerAnswers)
             {
-                var correctAnswer = correctAnswers.Where(a => a.IdQuestion == userAnswer.IdQuestion).FirstOrDefault();
-
-                if (correctAnswer != null) {
-                    if (userAnswer.IdAnswer == correctAnswer.IdAnswer)
-                        sum += 1;
-                }
+                if (userAnswer.IsCorrect == true)
+                    sum += 1;
             }
 
             return sum;

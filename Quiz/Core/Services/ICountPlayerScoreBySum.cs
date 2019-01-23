@@ -9,6 +9,6 @@ namespace Quiz.Core.Services
 {
     interface ICountPlayerScoreBySum
     {
-        int CountPlayerScoreBySum(IEnumerable<Answer> playerAnswers, IEnumerable<QuestionAnswer> correctAnswers);
+        int CountPlayerScoreBySum(IEnumerable<Answer> playerAnswers);
     }
 }

@@ -9,6 +9,6 @@ namespace Quiz.Core.Services
 {
     interface ICountPlayerScoreByMultiply
     {
-        int CountPlayerScoreByMultiply(IEnumerable<Answer> userAnswers, IEnumerable<QuestionAnswer> correctAnswers);
+        int CountPlayerScoreByMultiply(IEnumerable<Answer> playerAnswers);
     }
 }

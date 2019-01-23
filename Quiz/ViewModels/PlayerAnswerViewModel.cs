@@ -15,5 +15,7 @@ namespace Quiz.ViewModels
         public int IdQuestion { get; set; }
 
         public string PlayerKey { get; set; }
+
+        public bool IsCorrect { get; set; }
     }
 }

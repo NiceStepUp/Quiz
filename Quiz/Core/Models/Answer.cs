@@ -13,11 +13,14 @@ namespace Quiz.Core.Models
 
         public int IdQuestion { get; }
 
-        public Answer(int idAnswer, int idQuestion, string content)
+        public bool IsCorrect { get; set; }
+
+        public Answer(int idAnswer, int idQuestion, string content, bool isCorrect)
         {
-            IdAnswer = idAnswer;            
+            IdAnswer = idAnswer;
             IdQuestion = idQuestion;
             Content = content;
+            IsCorrect = isCorrect;
         }
     }
 }

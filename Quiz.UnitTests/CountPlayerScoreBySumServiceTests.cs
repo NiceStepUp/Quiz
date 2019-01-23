@@ -12,35 +12,26 @@ namespace Quiz.UnitTests
     {
         private CountPlayerScoreBySumService _countPlayerScoreBySumService;
         private IEnumerable<Answer> _playerAnswers;
-        private IEnumerable<QuestionAnswer> _correctAnswers;
 
         [SetUp]
         public void SetUp()
         {
             _countPlayerScoreBySumService = new CountPlayerScoreBySumService();
+
             _playerAnswers = new List<Answer>()
             {
-                new Answer(1, 1, "a"),
-                new Answer(2, 2, "b"),
-                new Answer(3, 3, "c"),
-                new Answer(4, 4, "d")
+                new Answer(4, 1, "6", true),
+                new Answer(10, 2, "More than 6", true),
+                new Answer(11, 3, "Sequoia", true),
+                new Answer(15, 4, "yes, I do!", true)
             };
-
-            _correctAnswers = new List<QuestionAnswer>()
-            {
-                new QuestionAnswer(1, 1),
-                new QuestionAnswer(2, 2),
-                new QuestionAnswer(3, 3),
-                new QuestionAnswer(4, 4),
-            };
-
         }
 
 
         [Test]
         public void CountPlayerScoreBySum_AllAnswersAreCorrect_ReturnsFour()
         {
-            var result = _countPlayerScoreBySumService.CountPlayerScoreBySum(_playerAnswers, _correctAnswers);
+            var result = _countPlayerScoreBySumService.CountPlayerScoreBySum(_playerAnswers);
 
             Assert.That(result, Is.EqualTo(4));
         }
