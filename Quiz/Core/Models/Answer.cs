@@ -13,7 +13,7 @@ namespace Quiz.Core.Models
 
         public int IdQuestion { get; }
 
-        public bool IsCorrect { get; set; }
+        public bool IsCorrect { get; }
 
         public Answer(int idAnswer, int idQuestion, string content, bool isCorrect)
         {
